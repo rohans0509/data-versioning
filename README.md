@@ -167,9 +167,10 @@ By the end of this tutorial your folder structure should look like this:
    |-----label-studio
    |-data-versioning
    |-cheese_dataset
-   |---amanita
-   |---crimini
-   |---oyster
+   |---brie
+   |---gouda
+   |---gruyere
+   |---parmigiano
    |-cheese_dataset_prep
    |-secrets
 ```
