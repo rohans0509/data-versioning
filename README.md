@@ -1,14 +1,11 @@
-# Tutorial T7 Cheese App:  Data Versioning Demo
+# Tutorial (T7):  Data Versioning Demo
 
 In this tutorial go over data versioning techniques using the cheese app data. We will use Docker to run everything inside containers.
 
 ## Prerequisites
 * Have Docker installed
-* Cloned this repository to your local machine with a terminal up and running
 
 
-### Clone the github repository
-- Clone or download from [here](https://github.com/dlops-io/data-versioning)
 
 
 ## Make sure we do not have any running containers and clear up an unused images
@@ -20,14 +17,14 @@ In this tutorial go over data versioning techniques using the cheese app data. W
 ## Cheese App: Data Versioning
 In this tutorial we will setup a data versioning step for the cheese app pipeline. We will use Docker to run everything inside containers.
 
-### Fork the github repository
-- Fork or download from [here](https://github.com/dlops-io/data-versioning)
+
+
+### Clone the github repository
+* Cloned  repository from [here](https://github.com/dlops-io/data-versioning) to your local machine 
 
 Your folder structure should look like this:
 ```
    |-data-labeling
-   |---docker-volumes
-   |-----label-studio
    |-data-versioning
    |-secrets
 ```
@@ -49,9 +46,6 @@ export GCS_BUCKET_NAME="cheese-app-data-demo" [REPLACE WITH YOUR BUCKET NAME]
 export GCP_PROJECT="ac215-project" [REPLACE WITH YOUR GCP PROJECT]
 export GCP_ZONE="us-central1-a"
 
-```
-For windows open the file `docker-shell.bat`
-```
 
 ```
 
@@ -117,7 +111,8 @@ In this step we create a data registry using DVC
 You can go to your GCS Bucket folder `dvs_store` to view the tracking files
 
 
-#### Update Git to track DVC
+#### Update Git to track DVC 
+Run this outside the container. 
 - First run git status `git status`
 - Add changes `git add .`
 - Commit changes `git commit -m 'dataset updates...'`
