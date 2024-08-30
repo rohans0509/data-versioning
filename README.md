@@ -122,7 +122,7 @@ Run this outside the container.
 
 ### Download Data to view version
 In this Step we will use Colab to view various version of the dataset
-- Open [Colab Notebook](https://colab.research.google.com/drive/1UXfp9IDnzczGYTQ_tMLGsrrKH5F397_S?usp=sharing)
+- Open [Colab Notebook](https://colab.research.google.com/drive/1RRQ1SlHq5lKK76R8LoQdi5LjCnND3jTq?usp=sharing)
 - Follow instruction in the Colab Notebook
 
 ## Make changes to data
@@ -146,7 +146,7 @@ In this step we will download the labeled data from the GCS bucket and create `d
 #### Push Data to Remote Registry
 `dvc push`
 
-#### Update Git to track DVC changes
+#### Update Git to track DVC changes (again remember this should be done outside the container)
 - First run git status `git status`
 - Add changes `git add .`
 - Commit changes `git commit -m 'dataset updates...'`
@@ -156,7 +156,7 @@ In this step we will download the labeled data from the GCS bucket and create `d
 
 ### Download Data to view version
 In this Step we will use Colab to view the new version of the dataset
-- Open [Colab Notebook](https://colab.research.google.com/drive/1UXfp9IDnzczGYTQ_tMLGsrrKH5F397_S?usp=sharing)
+- Open [Colab Notebook](https://colab.research.google.com/drive/1RRQ1SlHq5lKK76R8LoQdi5LjCnND3jTq?usp=sharing)
 - Follow instruction in the Colab Notebook to view `dataset_v2`
 
 
