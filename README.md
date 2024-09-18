@@ -73,8 +73,8 @@ Run this outside the container.
 - First run git status `git status`
 - Add changes `git add .`
 - Commit changes `git commit -m 'dataset updates...'`
-- Add a dataset tag `git tag -a 'dataset_v1' -m 'tag dataset'`
-- Push changes `git push --atomic origin main dataset_v1`
+- Add a dataset tag `git tag -a 'dataset_v20' -m 'tag dataset'`
+- Push changes `git push --atomic origin main dataset_v20`
 
 
 ### Download Data to view version
@@ -84,53 +84,28 @@ In this Step we will use Colab to view various version of the dataset
 
 ## Make changes to data
 
-### Use Label Studio to annotate some more data
+### Upload images
+- Upload a few more images to the `images` folder in your bucket (We are simulating some change in data)
 
-- Go to Label Studio App at `http://localhost:8080/`
-- Click on an item in the grid to annotate using the UI
-- Repeat for a few of the images
-
-### Download newly Labeled Data
-
-In this step we will download the labeled data from the GCS bucket and create `dataset_v2` version of our dataset.
-
-- Go to the shell where ran the docker container for `data-versioning`
-- Run `python cli.py -d`
-
-#### Add the dataset to registry
+#### Add the dataset (changes) to registry
 `dvc add cheese_dataset`
 
-#### Push Data to Remote Registry
+#### Push to Remote Registry
 `dvc push`
 
 #### Update Git to track DVC changes (again remember this should be done outside the container)
 - First run git status `git status`
 - Add changes `git add .`
 - Commit changes `git commit -m 'dataset updates...'`
-- Add a dataset tag `git tag -a 'dataset_v2' -m 'tag dataset'`
-- Push changes `git push --atomic origin main dataset_v2`
+- Add a dataset tag `git tag -a 'dataset_v21' -m 'tag dataset'`
+- Push changes `git push --atomic origin main dataset_v21`
 
 
 ### Download Data to view version
 In this Step we will use Colab to view the new version of the dataset
 - Open [Colab Notebook](https://colab.research.google.com/drive/1RRQ1SlHq5lKK76R8LoQdi5LjCnND3jTq?usp=sharing)
-- Follow instruction in the Colab Notebook to view `dataset_v2`
+- Follow instruction in the Colab Notebook to view `dataset_v21`
 
-
-By the end of this tutorial your folder structure should look like this:
-```
-   |-data-labeling
-   |---docker-volumes
-   |-----label-studio
-   |-data-versioning
-   |-cheese_dataset
-   |---brie
-   |---gouda
-   |---gruyere
-   |---parmigiano
-   |-cheese_dataset_prep
-   |-secrets
-```
 
 ### 🎉 Congratulations we just setup and tested data versioning using DVC
 
