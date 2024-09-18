@@ -18,7 +18,6 @@ In this tutorial go over data versioning techniques using the cheese app data. W
 
 Your folder structure should look like this:
 ```
-   |-data-labeling
    |-data-versioning
    |-secrets
 ```
@@ -27,8 +26,9 @@ Your folder structure should look like this:
 
 ### Create a Data Store folder in GCS Bucket
 - Go to `https://console.cloud.google.com/storage/browser`
-- Go to the bucket `cheese-app-data-demo` (REPLACE WITH YOUR BUCKET NAME)
+- Go to the bucket `cheese-app-data-versioning` (REPLACE WITH YOUR BUCKET NAME)
 - Create a folder `dvc_store` inside the bucket
+- Create a folder `images` inside the bucket (This is where we will store the images that need to be versioned)
 
 ## Run DVC Container
 We will be using [DVC](https://dvc.org/) as our data versioning tool. DVC (Data Version Control) is an Open-source, Git-based data science tool. It applies version control to machine learning development, make your repo the backbone of your project.
@@ -36,7 +36,7 @@ We will be using [DVC](https://dvc.org/) as our data versioning tool. DVC (Data 
 ### Setup DVC Container Parameters
 In order for the DVC container to connect to our GCS Bucket open the file `docker-shell.sh` and edit some of the values to match your setup
 ```
-export GCS_BUCKET_NAME="cheese-app-data-demo" [REPLACE WITH YOUR BUCKET NAME]
+export GCS_BUCKET_NAME="cheese-app-data-versioning" [REPLACE WITH YOUR BUCKET NAME]
 export GCP_PROJECT="ac215-project" [REPLACE WITH YOUR GCP PROJECT]
 export GCP_ZONE="us-central1-a"
 
@@ -44,26 +44,10 @@ export GCP_ZONE="us-central1-a"
 ```
 
 
-### Run `docker-shell.sh` or `docker-shell.bat`
+### Run `docker-shell.sh`
 - Make sure you are inside the `data-versioning` folder and open a terminal at this location
 - Run `sh docker-shell.sh`  
 
-This will run a container that has DVC already installed. You can verify the containers running by `docker container ls` on another terminal prompt. You should see something like this:
-```
-CONTAINER ID   IMAGE                             COMMAND                  CREATED              STATUS              PORTS                                                      NAMES
-00d808ab0386   data-label-cli                    "pipenv shell"           About a minute ago   Up About a minute                                                              data-labeling-data-label-cli-run
-4ab1ec940b4a   heartexlabs/label-studio:latest   "./deploy/docker-ent…"   2 days ago           Up 2 days           0.0.0.0:8080->8080/tcp                                     data-label-studio
-e87e8c6f180f   data-version-cli                  "pipenv shell"           5 seconds ago        Up 5 seconds                                                                   data-version-cli
-```
-
-
-<!-- 
-### Ensure we do not push data files to git
-Make sure to have your gitignore to ignore the dataset folders. We do not want the dataset files going into our git repo.
-```
-/cheese_dataset_prep
-/cheese_dataset
-``` -->
 
 ### Version Data using DVC
 In this step we will start tracking the dataset using DVC
@@ -73,12 +57,12 @@ In this step we create a data registry using DVC
 `dvc init`
 
 #### Add Remote Registry to GCS Bucket (For Data)
-`dvc remote add -d cheese_dataset gs://cheese-app-data-demo/dvc_store`
+`dvc remote add -d cheese_dataset gs://cheese-app-data-versioning/dvc_store`
 
 #### Add the dataset to registry
-`dvc add /mnt/gcs_data/cheese_labeled`
+`dvc add cheese_dataset`
 
-#### Push Data to Remote Registry
+#### Push to Remote Registry
 `dvc push`
 
 You can go to your GCS Bucket folder `dvs_store` to view the tracking files
