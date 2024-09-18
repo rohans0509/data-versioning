@@ -3,9 +3,7 @@
 In this tutorial go over data versioning techniques using the cheese app data. We will use Docker to run everything inside containers.
 
 ## Prerequisites
-* Have Docker installed
-
-
+* Have tha latest Docker installed
 
 
 ## Make sure we do not have any running containers and clear up an unused images
@@ -13,10 +11,6 @@ In this tutorial go over data versioning techniques using the cheese app data. W
 * Stop any container that is running
 * Run `docker system prune`
 * Run `docker image ls`
-
-## Cheese App: Data Versioning
-In this tutorial we will setup a data versioning step for the cheese app pipeline. We will use Docker to run everything inside containers.
-
 
 
 ### Clone the github repository
@@ -51,10 +45,8 @@ export GCP_ZONE="us-central1-a"
 
 
 ### Run `docker-shell.sh` or `docker-shell.bat`
-Based on your OS, run the startup script to make building & running the container easy
-
 - Make sure you are inside the `data-versioning` folder and open a terminal at this location
-- Run `sh docker-shell.sh` or `docker-shell.bat` for windows
+- Run `sh docker-shell.sh`  
 
 This will run a container that has DVC already installed. You can verify the containers running by `docker container ls` on another terminal prompt. You should see something like this:
 ```
@@ -64,33 +56,14 @@ CONTAINER ID   IMAGE                             COMMAND                  CREATE
 e87e8c6f180f   data-version-cli                  "pipenv shell"           5 seconds ago        Up 5 seconds                                                                   data-version-cli
 ```
 
-### Download Labeled Data
 
-In this step we will download all the labeled data from the GCS bucket and create `dataset_v1` version of our dataset.
-
-- Go to the shell where ran the docker container for `data-versioning`
-- Run `python cli.py -d`
-
-If you check inside the `data-versioning` folder you should see the a `cheese_dataset` folder with labeled images in them.
-```
-   .
-   |-cheese_dataset
-   |---brie
-   |---gouda
-   |---gruyere
-   |---parmigiano
-   |-cheese_dataset_prep
-
-```
-
-The dataset from the data labeling step will be downloaded to a local folder called `cheese_dataset`
-
+<!-- 
 ### Ensure we do not push data files to git
 Make sure to have your gitignore to ignore the dataset folders. We do not want the dataset files going into our git repo.
 ```
 /cheese_dataset_prep
 /cheese_dataset
-```
+``` -->
 
 ### Version Data using DVC
 In this step we will start tracking the dataset using DVC
@@ -103,7 +76,7 @@ In this step we create a data registry using DVC
 `dvc remote add -d cheese_dataset gs://cheese-app-data-demo/dvc_store`
 
 #### Add the dataset to registry
-`dvc add cheese_dataset`
+`dvc add /mnt/gcs_data/cheese_labeled`
 
 #### Push Data to Remote Registry
 `dvc push`
