@@ -31,7 +31,7 @@ Your folder structure should look like this:
 - Create a folder `images` inside the bucket (This is where we will store the images that need to be versioned)
 
 ## Run DVC Container
-We will be using [DVC](https://dvc.org/) as our data versioning tool. DVC (Data Version Control) is an Open-source, Git-based data science tool. It applies version control to machine learning development, make your repo the backbone of your project.
+We will be using [DVC](https://dvc.org/) as our data versioning tool. DVC (Data Version Control) is an open-source, Git-based data science tool. It applies version control to machine learning development, make your repo the backbone of your project.
 
 ### Setup DVC Container Parameters
 In order for the DVC container to connect to our GCS Bucket open the file `docker-shell.sh` and edit some of the values to match your setup
@@ -42,7 +42,7 @@ export GCP_ZONE="us-central1-a"
 
 
 ```
-
+### TODO: ENTRYPOINT and docker-entrypoint.sh 
 
 ### Run `docker-shell.sh`
 - Make sure you are inside the `data-versioning` folder and open a terminal at this location
