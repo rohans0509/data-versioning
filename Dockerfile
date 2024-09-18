@@ -43,7 +43,7 @@ RUN mkdir -p /mnt/gcs_data && chown app:app /mnt/gcs_data
 
 
 # Switch to the new user
-USER app
+#USER app # Keep the user as root since we need for mounting
 WORKDIR /app
 
 
@@ -57,4 +57,5 @@ RUN pipenv sync
 ADD --chown=app:app . /app
 
 # Entry point
-ENTRYPOINT ["pipenv","shell"]
+#ENTRYPOINT ["pipenv","shell"]
+ENTRYPOINT ["/bin/bash","./docker-entrypoint.sh"]
