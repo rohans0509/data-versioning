@@ -1,17 +1,15 @@
 # Tutorial (T7):  Data Versioning Demo
 
-In this tutorial go over data versioning techniques using the cheese app data. We will use Docker to run everything inside containers.
+In this tutorial, we will cover data versioning techniques using the cheese app dataset. Everything will be run inside containers using Docker.
 
 ## Prerequisites
 * Have tha latest Docker installed
-
 
 ## Make sure we do not have any running containers and clear up an unused images
 * Run `docker container ls`
 * Stop any container that is running
 * Run `docker system prune`
 * Run `docker image ls`
-
 
 ### Clone the github repository
 * Cloned  repository from [here](https://github.com/dlops-io/data-versioning) to your local machine 
@@ -21,8 +19,9 @@ Your folder structure should look like this:
    |-data-versioning
    |-secrets
 ```
+Download the json file and place inside the secrets folder:
+<a href="https://static.us.edusercontent.com/files/mlca0YEYdvkWPNEowJ0o4hOd" download>mega-pipeline.json</a>
 
-- To view all the code open `data-versioning` folder in VSCode or any IDE of choice
 
 ### Create a Data Store folder in GCS Bucket
 - Go to `https://console.cloud.google.com/storage/browser`
