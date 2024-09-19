@@ -41,7 +41,18 @@ export GCP_ZONE="us-central1-a"
 
 
 ```
-### TODO: ENTRYPOINT and docker-entrypoint.sh 
+### Note: Addition of `docker-entrypoint.sh`
+Note that we have added a new file called `docker-entrypoint.sh` to our development flow. A `docker-entrypoint.sh` is used to simplify some task when running containers such as:
+* Helps with Initialization and Setup: 
+   * The entrypoint file is used to perform necessary setup tasks when the container starts. 
+   * It is a way to ensure that certain operations occur every time the container runs, regardless of the command used to start it.
+* Helps with Dynamic Configuration:
+   * It allows for dynamic configuration of the container environment based on runtime variables or mounted volumes. 
+   * This is more flexible than hardcoding everything into the Dockerfile.
+
+For this container we need to:
+* Mount a GCS bucket to a volume mount in the container
+* We then mount the "images" folder in the bucket mount to the "/app/cheese_dataset" folder
 
 ### Run `docker-shell.sh`
 - Make sure you are inside the `data-versioning` folder and open a terminal at this location
