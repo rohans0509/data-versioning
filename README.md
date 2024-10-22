@@ -3,7 +3,7 @@
 In this tutorial, we will cover data versioning techniques using the cheese app dataset. Everything will be run inside containers using Docker.
 
 ## Prerequisites
-* Have tha latest Docker installed
+* Have the latest Docker installed
 
 ## Make sure we do not have any running containers and clear up an unused images
 * Run `docker container ls`
@@ -19,8 +19,13 @@ Your folder structure should look like this:
    |-data-versioning
    |-secrets
 ```
-Download the json file and place inside the secrets folder:
-<a href="https://static.us.edusercontent.com/files/mlca0YEYdvkWPNEowJ0o4hOd" download>mega-pipeline.json</a>
+
+### Setup GCP Service Account
+- Here are the step to create a service account:
+- To setup a service account you will need to go to [GCP Console](https://console.cloud.google.com/home/dashboard), search for  "Service accounts" from the top search box. or go to: "IAM & Admins" > "Service accounts" from the top-left menu and create a new service account called "data-service-account". For "Service account permissions" select "Cloud Storage" > "Storage Admin" (Type "cloud storage" in filter and scroll down till you find). Then click continue and done.
+- This will create a service account
+- On the right "Actions" column click the vertical ... and select "Manage keys". A prompt for Create private key for "data-service-account" will appear select "JSON" and click create. This will download a Private key json file to your computer. Copy this json file into the **secrets** folder. Rename the json file to `data-service-account.json`
+
 
 
 ### Create a Data Store folder in GCS Bucket
@@ -37,7 +42,7 @@ In order for the DVC container to connect to our GCS Bucket open the file `docke
 ```
 export GCS_BUCKET_NAME="cheese-app-data-versioning" [REPLACE WITH YOUR BUCKET NAME]
 export GCP_PROJECT="ac215-project" [REPLACE WITH YOUR GCP PROJECT]
-export GCP_ZONE="us-central1-a"
+export GCP_ZONE="us-central1-a"  [REPLACE WITH YOUR GCP ZONE]
 
 
 ```
@@ -75,7 +80,7 @@ In this step we create a data registry using DVC
 #### Push to Remote Registry
 `dvc push`
 
-You can go to your GCS Bucket folder `dvs_store` to view the tracking files
+You can go to your GCS Bucket folder `dvc_store` to view the tracking files
 
 
 #### Update Git to track DVC 
