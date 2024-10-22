@@ -11,8 +11,11 @@ In this tutorial, we will cover data versioning techniques using the cheese app 
 * Run `docker system prune`
 * Run `docker image ls`
 
-### Clone the github repository
-* Cloned  repository from [here](https://github.com/dlops-io/data-versioning) to your local machine 
+### Clone the [data-versioning-ac215](https://github.com/dlops-io/data-versioning/tree/data-versioning-ac215) branch from the [data-versioning repository](https://github.com/dlops-io/data-versioning) to your local machine
+* You can clone the repository using the following command:
+`git clone -b data-versioning-ac215 https://github.com/dlops-io/data-versioning.git`
+
+### Adding the secrets folder
 
 Your folder structure should look like this:
 ```
@@ -73,6 +76,7 @@ In this step we create a data registry using DVC
 
 #### Add Remote Registry to GCS Bucket (For Data)
 `dvc remote add -d cheese_dataset gs://cheese-app-data-versioning/dvc_store`
+[REPLACE WITH YOUR BUCKET NAME]
 
 #### Add the dataset to registry
 `dvc add cheese_dataset`
