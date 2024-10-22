@@ -12,8 +12,36 @@ In this tutorial, we will cover data versioning techniques using the cheese app 
 * Run `docker image ls`
 
 ### Clone the [data-versioning-ac215](https://github.com/dlops-io/data-versioning/tree/data-versioning-ac215) branch from the [data-versioning repository](https://github.com/dlops-io/data-versioning) to your local machine
-* You can clone the repository using the following command:
-`git clone -b data-versioning-ac215 https://github.com/dlops-io/data-versioning.git`
+In order to work on this task, you need to have a repository with write permission (the class repo only gives you read permissions).
+This can be done by either forking the repository or copying its code.
+
+
+To fork the repository, follow these steps:
+* Clone the branch data-versioning-ac215 of the repository using the following command:
+
+`git clone -b data-versioning-ac215 git@github.com:dlops-io/data-versioning.git`
+This example uses SSH, so you'll need to have your public SSH key added to your GitHub account. Alternatively, you can clone using HTTPS (not explained here).
+
+
+* Remove the .git folder from the cloned repository. This will delete the Git metadata, unlinking the code from the original repository.
+`rm -rf data-versioning/.git`
+* Initialize a new git repository.
+`cd data-versioning`
+`git init`
+
+* (Optional) Create a LICENSE to define usage permissions. (.gitignore is already included you may update it to exclude files you don't want to track)
+
+* Create a new private repository on GitHub without any files ie. no README.md, no LICENSE, no .gitignore etc.
+New repo url: `https://github.com/YOUR_GITHUB_USERNAME/data-versioning`
+
+* Add the remote and push your changes
+```
+git init
+git remote add origin git@github.com:YOUR_GITHUB_USERNAME/data-versioning.git
+git add .
+git commit -m "Initial commit"
+git push -u origin main
+```
 
 ### Adding the secrets folder
 
@@ -117,6 +145,7 @@ In this Step we will use Colab to view various version of the dataset
 - Add changes `git add .`
 - Commit changes `git commit -m 'dataset updates...'`
 - Add a dataset tag `git tag -a 'dataset_v21' -m 'tag dataset'`
+- Add a remote origin `git remote add origin git@github.com:YOUR_GITHUB_USERNAME/data-versioning.git`   
 - Push changes `git push --atomic origin main dataset_v21`
 
 
