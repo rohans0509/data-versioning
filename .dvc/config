@@ -1,0 +1,5 @@
+[core]
+    autostage = true
+    remote = dataset
+['remote "dataset"']
+    url = gs://main-data-versioning/dvc_store
